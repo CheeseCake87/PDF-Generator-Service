@@ -1,0 +1,14 @@
+services:
+  app:
+    container_name: "pdf-generator-service-test"
+    cpu_count: 1
+    environment:
+      - PDFGS_PORT=9898
+      - PDFGS_IN_TESTING=true
+      - PDFGS_X_API_KEY=hello
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "9898:9898"
+    restart: always
