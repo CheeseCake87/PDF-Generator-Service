@@ -17,5 +17,6 @@ dev = "*:flask run --port 9898 --debug"
 
 [dependency-groups]
 dev = [
+    "requests>=2.32.5",
     "ruff>=0.14.0",
 ]

@@ -5,7 +5,7 @@ services:
     environment:
       - PDFGS_PORT=9898
       - PDFGS_IN_TESTING=true
-      - PDFGS_X_API_KEY=hello
+      - PDFGS_X_API_KEY=none
     build:
       context: .
       dockerfile: Dockerfile
