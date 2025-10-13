@@ -7,14 +7,6 @@ from flask import Flask, request, make_response, Request
 from flask_orjson import OrjsonProvider
 from marshmallow import Schema, fields, ValidationError, EXCLUDE
 
-
-class PDFRequestSchema(Schema):
-    html = fields.String(required=True)
-
-    class Meta:
-        unknown = EXCLUDE
-
-
 PDFGS_X_API_KEY = getenv("PDFGS_X_API_KEY", None)
 PDFGS_IN_TESTING = getenv("PDFGS_IN_TESTING", False)
 
@@ -24,6 +16,13 @@ VALID_X_API_KEY_HEADERS = [
     "X-Api-Key",
     "x-api-key",
 ]
+
+
+class PDFRequestSchema(Schema):
+    html = fields.String(required=True)
+
+    class Meta:
+        unknown = EXCLUDE
 
 
 def print_logger(msg):
