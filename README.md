@@ -33,7 +33,7 @@ This will return a PDF file as Content-Type application/pdf
 #### JSON
 
 ```bash
-curl -X POST -d '{"html": "<html_string>"}' http://localhost:9898/pdf
+curl -X POST -H "Content-Type: application/json" -d '{"html": "<html_string>"}' http://localhost:9898/pdf
 ```
 
 This will return:
