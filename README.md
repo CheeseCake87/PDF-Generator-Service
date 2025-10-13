@@ -44,6 +44,40 @@ This will return:
 }
 ```
 
+#### Tips ℹ️
+
+When passing in html with css, it's best to use the style rag in the head:
+
+```html
+<head>
+    ...
+    <style>
+        .styles-here {
+            ...
+        }
+    </style>
+</head>
+```
+
+You can adjust the page settings, and add fonts by doing:
+
+```html
+<style>
+    @page {
+        size: A4 !important;
+        padding: 0 !important;
+        margin: 2rem !important;
+    }
+
+    @font-face {
+        font-family: 'OpenSans';
+        src: url('https://<url_to_font>/OpenSans.ttf') format('truetype');
+    }
+    
+    ...
+</style>
+```
+
 ## Security
 
 If you set the environment variable `PDFGS_X_API_KEY`, this will set the
