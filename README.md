@@ -46,7 +46,7 @@ This will return:
 
 #### Tips ℹ️
 
-When passing in html with css, it's best to use the style rag in the head:
+When passing in html with css, it's best to use the style tag in the head:
 
 ```html
 <head>
