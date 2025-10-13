@@ -25,7 +25,7 @@ You would then sit this behind a reverse proxy. Or use it directly from other se
 #### Form-Data
 
 ```bash
-curl -X POST -F "html=<html_string>" http://localhost:9898/pdf
+curl -X POST -F "html=<h1>Hello, World!</h1>" http://localhost:9898/pdf
 ```
 
 This will return a PDF file as Content-Type application/pdf
@@ -33,7 +33,7 @@ This will return a PDF file as Content-Type application/pdf
 #### JSON
 
 ```bash
-curl -X POST -H "Content-Type: application/json" -d '{"html": "<html_string>"}' http://localhost:9898/pdf
+curl -X POST -H "Content-Type: application/json" -d '{"html": "<h1>Hello, World!</h1>"}' http://localhost:9898/pdf
 ```
 
 This will return:
