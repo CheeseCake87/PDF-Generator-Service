@@ -3,19 +3,12 @@ from functools import wraps
 from os import getenv
 from textwrap import dedent
 
-from flask import Flask, request, make_response, Request
+from flask import Flask, request, make_response
 from flask_orjson import OrjsonProvider
 from marshmallow import Schema, fields, ValidationError, EXCLUDE
 
 PDFGS_X_API_KEY = getenv("PDFGS_X_API_KEY", None)
 PDFGS_IN_TESTING = getenv("PDFGS_IN_TESTING", False)
-
-VALID_X_API_KEY_HEADERS = [
-    "X-API-KEY",
-    "X-API-Key",
-    "X-Api-Key",
-    "x-api-key",
-]
 
 
 class PDFRequestSchema(Schema):
@@ -41,21 +34,13 @@ def match_x_api_key(header_value) -> bool:
     return False
 
 
-def x_api_key_header(r: Request) -> str | None:
-    for header in VALID_X_API_KEY_HEADERS:
-        if header in r.headers:
-            print_logger(f"Header found: {header}, returning value")
-            return r.headers[header]
-    return None
-
-
 def check_api_key(*args_, **kwargs_):
     def check_api_key_wrapper(func):
         @wraps(func)
         def inner(*args, **kwargs):
             if PDFGS_X_API_KEY:
                 print_logger(f"PDFGS_X_API_KEY defined: {PDFGS_X_API_KEY}")
-                if x_api_key := x_api_key_header(request):
+                if x_api_key := request.headers.get("x-api-key"):
                     if not match_x_api_key(x_api_key):
                         if request.is_json:
                             return {"error": "Invalid API Key!"}, 401
