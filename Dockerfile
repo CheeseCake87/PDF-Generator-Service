@@ -1,4 +1,4 @@
-# tag: docker build -t cheesecake87/pdf-generator-service:b4 -t cheesecake87/pdf-generator-service:latest .
+# tag: docker build -t cheesecake87/pdf-generator-service:b5 -t cheesecake87/pdf-generator-service:latest .
 FROM ghcr.io/astral-sh/uv:python3.13-alpine
 
 RUN apk add --update --upgrade --no-cache fontconfig ttf-freefont font-noto terminus-font && fc-cache -f && fc-list | sort
