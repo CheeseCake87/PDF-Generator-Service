@@ -161,3 +161,6 @@ def create_app():
         test_route(app)
 
     return app
+
+
+main = create_app()

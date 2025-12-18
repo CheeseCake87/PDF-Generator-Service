@@ -1,5 +1,5 @@
-# tag: docker build -t cheesecake87/pdf-generator-service:b5 -t cheesecake87/pdf-generator-service:latest .
-FROM ghcr.io/astral-sh/uv:python3.13-alpine
+# tag: docker build -t cheesecake87/pdf-generator-service:b6 -t cheesecake87/pdf-generator-service:latest .
+FROM ghcr.io/astral-sh/uv:python3.14-alpine
 
 RUN apk add --update --upgrade --no-cache fontconfig ttf-freefont font-noto terminus-font && fc-cache -f && fc-list | sort
 RUN apk add --update --no-cache py3-pip gcc musl-dev python3-dev pango zlib-dev jpeg-dev openjpeg-dev g++ libffi-dev curl curl-dev
@@ -14,7 +14,7 @@ ENV TZ=Europe/London
 WORKDIR /main
 
 COPY app app
-COPY gunicorn.conf.py gunicorn.conf.py
+COPY env env
 COPY pyproject.toml pyproject.toml
 COPY uv.lock uv.lock
 
@@ -23,4 +23,4 @@ RUN uv sync --no-dev
 # Place executables in the environment at the front of the path
 ENV PATH="/main/.venv/bin:$PATH"
 
-ENTRYPOINT ["gunicorn"]
+ENTRYPOINT ["qwe", "granian"]

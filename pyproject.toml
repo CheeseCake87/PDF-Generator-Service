@@ -5,15 +5,21 @@ description = "An API service for generating PDFs from given html"
 requires-python = ">=3.13"
 dependencies = [
     "flask==3.0.3",
-    "gunicorn>=23.0.0",
     "weasyprint>=66.0",
     "pyqwe>=3.1.1",
     "marshmallow>=4.0.1",
     "flask-orjson>=2.0.0",
+    "granian>=2.6.0",
+    "python-dotenv>=1.2.1",
 ]
 
 [tool.pyqwe]
 dev = "*:flask run --port 9898 --debug"
+granian = [
+    "@sync",
+    "env:load",
+    "*:granian app:main"
+]
 
 [dependency-groups]
 dev = [
