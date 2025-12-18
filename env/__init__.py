@@ -9,3 +9,4 @@ def load():
     environ["GRANIAN_PORT"] = str(port)
     environ["GRANIAN_WORKERS"] = str(1)
     environ["GRANIAN_INTERFACE"] = "wsgi"
+    environ["GRANIAN_BACKPRESSURE"] = str(20)
