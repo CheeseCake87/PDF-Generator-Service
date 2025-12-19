@@ -1,6 +1,5 @@
 .idea/
 .venv/
-fonts/
 tool.py
 test.pdf
 test.html
