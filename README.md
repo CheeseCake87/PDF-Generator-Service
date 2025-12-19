@@ -6,6 +6,12 @@ An API service for generating PDFs from the given html.
 
 `cheesecake87/pdf-generator-service:latest`
 
+or
+
+`cheesecake87/pdf-generator-service-gfonts:latest`
+
+⚠️Warning: The `-gfonts` image is VERY large (~3GB)
+
 ## How it works
 
 This service uses Flask with WeasyPrint to generate PDFs from given html.
@@ -77,6 +83,36 @@ You can adjust the page settings, and add fonts by doing:
     ...
 </style>
 ```
+
+## With Fonts
+
+The `cheesecake87/pdf-generator-service-gfonts:latest` image includes all the
+fonts from [Google Fonts](https://fonts.google.com/).
+
+To access these fonts use the following css:
+
+```html
+<style>
+    @page {
+        size: A4 !important;
+        padding: 0 !important;
+        margin: 2rem !important;
+    }
+
+    @font-face {
+        font-family: 'Font Name Here';
+        src: url('file:///fonts/MonsieurLaDoulaise-Regular.ttf') format('truetype');
+    }
+    
+    p {
+        font-family: 'Font Name Here';
+    }
+    
+    ...
+</style>
+```
+
+A list of all the available fonts can be found in the [FONTS.md](FONTS.md) file.
 
 ## Security
 
