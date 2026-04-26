@@ -14,7 +14,11 @@ or
 
 ## How it works
 
-This service uses Flask with WeasyPrint to generate PDFs from given html.
+This service uses Flask + granian (a Rust HTTP server) and WeasyPrint or 
+the Chromium web browser to generate PDFs from the given html.
+
+Chromium is set up to print in A4 pages, and Weasyprint is a little more 
+flexible and allows you to pass in the page size via css.
 
 The service listens on port `9898` by default, but can be changed
 by setting the environment variable `PDFGS_PORT`. Although it is
@@ -31,6 +35,7 @@ You would then sit this behind a reverse proxy. Or use it directly from other se
 #### Form-Data
 
 `Weasyprint`
+
 ```bash
 curl -X POST -F "html=<h1>Hello, World!</h1>" http://localhost:9898/pdf
 ```
@@ -38,27 +43,28 @@ curl -X POST -F "html=<h1>Hello, World!</h1>" http://localhost:9898/pdf
 or
 
 `Chromium`
+
 ```bash
 curl -X POST -F "html=<h1>Hello, World!</h1>" http://localhost:9898/chromium/pdf
 ```
 
-Both routes about will return a PDF file as Content-Type application/pdf
-
+Both routes will return a PDF file as Content-Type application/pdf
 
 #### JSON
 
 `Weasyprint`
+
 ```bash
 curl -X POST -H "Content-Type: application/json" -d '{"html": "<h1>Hello, World!</h1>"}' http://localhost:9898/pdf
 ```
 
-or 
+or
 
 `Chromium`
+
 ```bash
 curl -X POST -H "Content-Type: application/json" -d '{"html": "<h1>Hello, World!</h1>"}' http://localhost:9898/chromium/pdf
 ```
-
 
 Both routes will return:
 
@@ -73,6 +79,7 @@ Both routes will return:
 When passing in html with css, it's best to use the style tag in the head:
 
 ```html
+
 <head>
     ...
     <style>
@@ -86,6 +93,7 @@ When passing in html with css, it's best to use the style tag in the head:
 You can adjust the page settings, and add fonts by doing:
 
 ```html
+
 <style>
     @page {
         size: A4 !important;
@@ -97,7 +105,7 @@ You can adjust the page settings, and add fonts by doing:
         font-family: 'OpenSans';
         src: url('https://<url_to_font>/OpenSans.ttf') format('truetype');
     }
-    
+
     ...
 </style>
 ```
@@ -110,6 +118,7 @@ fonts from [Google Fonts](https://fonts.google.com/).
 To access these fonts use the following css:
 
 ```html
+
 <style>
     @page {
         size: A4 !important;
@@ -121,11 +130,11 @@ To access these fonts use the following css:
         font-family: 'Font Name Here';
         src: url('file:///fonts/MonsieurLaDoulaise-Regular.ttf') format('truetype');
     }
-    
+
     p {
         font-family: 'Font Name Here';
     }
-    
+
     ...
 </style>
 ```
@@ -153,7 +162,8 @@ curl -X POST -H "X-API-KEY: <your_api_key>" -H "Content-Type: application/json" 
 
 - `PDFGS_PORT` - The port to listen on.
 - `PDFGS_X_API_KEY` - The API key value to use to secure the `/pdf` route.
-- `PDFGS_IN_TESTING` - If set to `true`, the service will enable the `/test` and `/test-api-key` routes.
+- `PDFGS_IN_TESTING` - If set to `true`, the service will enable the
+  `/test` and `/test-api-key` routes.
 
 ## Orbiting Documentation
 
