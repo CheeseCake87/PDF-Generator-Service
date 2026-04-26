@@ -30,19 +30,37 @@ You would then sit this behind a reverse proxy. Or use it directly from other se
 
 #### Form-Data
 
+`Weasyprint`
 ```bash
 curl -X POST -F "html=<h1>Hello, World!</h1>" http://localhost:9898/pdf
 ```
 
-This will return a PDF file as Content-Type application/pdf
+or
+
+`Chromium`
+```bash
+curl -X POST -F "html=<h1>Hello, World!</h1>" http://localhost:9898/chromium/pdf
+```
+
+Both routes about will return a PDF file as Content-Type application/pdf
+
 
 #### JSON
 
+`Weasyprint`
 ```bash
 curl -X POST -H "Content-Type: application/json" -d '{"html": "<h1>Hello, World!</h1>"}' http://localhost:9898/pdf
 ```
 
-This will return:
+or 
+
+`Chromium`
+```bash
+curl -X POST -H "Content-Type: application/json" -d '{"html": "<h1>Hello, World!</h1>"}' http://localhost:9898/chromium/pdf
+```
+
+
+Both routes will return:
 
 ```json
 {
@@ -117,7 +135,7 @@ A list of all the available fonts can be found in the [FONTS.md](FONTS.md) file.
 ## Security
 
 If you set the environment variable `PDFGS_X_API_KEY`, this will set the
-`/pdf` route
+`/pdf` and `/chromium/pdf` routes
 to look for the header `X-API-KEY` and check if it matches the value of
 `PDFGS_X_API_KEY`.
 
