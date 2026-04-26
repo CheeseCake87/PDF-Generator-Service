@@ -10,7 +10,12 @@ RUN apk add so:libgobject-2.0.so.0  \
     so:libharfbuzz-subset.so.0 so:libfontconfig.so.1  \
     so:libpangoft2-1.0.so.0
 
+RUN apk add --update --no-cache \
+    chromium chromium-chromedriver \
+    nss freetype harfbuzz ca-certificates dbus
+
 ENV TZ=Europe/London
+ENV DOCKER=1
 
 RUN mkdir /fonts
 COPY fonts /fonts

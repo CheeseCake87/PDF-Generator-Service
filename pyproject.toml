@@ -11,10 +11,12 @@ dependencies = [
     "flask-orjson>=2.0.0",
     "granian>=2.7.4",
     "python-dotenv>=1.2.2",
+    "selenium>=4.43.0",
+    "loguru>=0.7.3",
 ]
 
 [tool.pyqwe]
-dev = "*:flask run --port 9898 --debug"
+dev = "*:flask run --port 9898 --host 0.0.0.0 --debug"
 granian = [
     "@sync",
     "env:load",
