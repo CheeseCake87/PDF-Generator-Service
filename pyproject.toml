@@ -20,7 +20,7 @@ dev = "*:flask run --port 9898 --host 0.0.0.0 --debug"
 granian = [
     "@sync",
     "env:load",
-    "*:granian app:main"
+    "*:granian app:create_app"
 ]
 
 [dependency-groups]
