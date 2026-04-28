@@ -3,6 +3,7 @@ services:
     container_name: "pdf-generator-service-test"
     cpu_count: 1
     environment:
+      - GRANIAN_WORKERS=1
       - PDFGS_PORT=9898
       - PDFGS_IN_TESTING=true
 #      - PDFGS_X_API_KEY=none
